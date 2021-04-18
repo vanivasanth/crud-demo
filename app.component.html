@@ -1,0 +1,64 @@
+<div class="container">
+  <form #myForm="ngForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">First name</label>
+      <input type="Name" class="form-control" name="fname" 
+       [(ngModel)] = "userObj.fname">
+     
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Last name</label>
+      <input type="Name" class="form-control" name="lname" 
+      [(ngModel)] = "userObj.lname">
+     
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Mobile Number</label>
+      <input type="Mobile" class="form-control" name="Mobile" 
+      [(ngModel)] = "userObj.mobile">
+     
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" name="email" 
+      [(ngModel)] = "userObj.email">     
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" name="password"  [(ngModel)] = "userObj.password">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addUser(myForm.value)"
+    *ngIf="!isEdit">Submit</button>
+
+    <button type="button" class="btn btn-info" (click)="updateUser()"
+    *ngIf="isEdit">Update</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"> First Name</th>
+        <th scope="col"> Last Name </th>
+        <th scope="col"> Mobile Number</th>
+        <th scope="col"> Email </th>
+        <th scope="col"> Password </th>
+        <th scope="col"> Edit </th>
+        <th scope="col"> Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor = "let user of allUser">
+         <td>{{user.fname}}</td>
+         <td>{{user.lname}}</td>
+         <td>{{user.Mobile}}</td>
+         <td>{{user.email}}</td>
+         <td>{{user.password}}</td>
+         <td><button (click)="editUser(user)" class="btn btn-warning"> Edit </button></td>
+         <td><button (click)="deleteUser(user)" class="btn btn-danger"> Delete </button></td>
+        </tr>
+       
+    </tbody>
+  </table>
+
+</div>
+<router-outlet></router-outlet>
